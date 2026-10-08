@@ -1,0 +1,32 @@
+[
+  {
+    "id": "reg_1791453327612_437",
+    "name": "Kavya Menon",
+    "email": "kavya.menon@college.edu",
+    "phone": "9876543299",
+    "age": 20,
+    "course": "B.Tech Information Technology",
+    "createdAt": "2026-10-08T09:55:27.612Z",
+    "updatedAt": "2026-10-08T09:55:27.612Z"
+  },
+  {
+    "id": "reg_101",
+    "name": "Aarav Sharma (Updated)",
+    "email": "aarav.sharma@college.edu",
+    "phone": "9876543210",
+    "age": 21,
+    "course": "B.E. Computer Science and Engineering",
+    "createdAt": "2026-10-01T10:30:00.000Z",
+    "updatedAt": "2026-10-08T09:55:52.219Z"
+  },
+  {
+    "id": "reg_103",
+    "name": "Rohan Verma",
+    "email": "rohan.v@college.edu",
+    "phone": "8765432109",
+    "age": 22,
+    "course": "B.E. Electronics and Communication Engineering",
+    "createdAt": "2026-10-05T09:45:00.000Z",
+    "updatedAt": "2026-10-05T09:45:00.000Z"
+  }
+]

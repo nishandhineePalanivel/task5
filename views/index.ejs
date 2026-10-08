@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Academic Portal & REST API Management - Level 3 Task 5</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- 1. RESPONSIVE NAVBAR SECTION -->
+  <header>
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar" aria-label="Main Navigation">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+          <div class="navbar-brand-badge">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+          <div>
+            <span class="font-heading fw-bold fs-5 text-dark d-block leading-tight">EduPortal</span>
+            <small class="text-muted font-mono" style="font-size: 0.7rem;">REST API v5.0</small>
+          </div>
+        </a>
+
+        <!-- Mobile Hamburger Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation Menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+            <li class="nav-item">
+              <a class="nav-link" href="#home"><i class="bi bi-house-door me-1"></i>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about"><i class="bi bi-info-circle me-1"></i>About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features"><i class="bi bi-grid me-1"></i>Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#courses"><i class="bi bi-book me-1"></i>Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#register"><i class="bi bi-pencil-square me-1"></i>Registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#dashboard"><i class="bi bi-database me-1"></i>Manage Records</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact"><i class="bi bi-envelope me-1"></i>Contact</a>
+            </li>
+          </ul>
+          <div class="ms-lg-3 mt-3 mt-lg-0">
+            <a href="#register" class="btn btn-custom-primary btn-sm px-3">
+              <i class="bi bi-arrow-right-circle"></i> Portal Apply
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main style="padding-top: 76px;">
+
+    <!-- Global API Notification Banner Container -->
+    <div class="container pt-3">
+      <div id="api-notification-alert" style="display: none;"></div>
+    </div>
+
+    <!-- SPA Main Content Container -->
+    <div id="main-portal-content">
+
+      <!-- 2. HERO SECTION -->
+      <section id="home" class="hero-section">
+        <div class="container">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-7 animate-fade-in-up">
+              <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-white border border-slate-200 shadow-sm mb-3">
+                <span class="badge bg-primary rounded-pill">Task 5</span>
+                <span class="small fw-bold text-muted">RESTful API Integration & Front-End Interaction</span>
+              </div>
+              
+              <h1 class="hero-title mb-3">
+                Streamlining Admissions with <span class="hero-gradient-text">RESTful API Architecture</span>
+              </h1>
+              
+              <p class="hero-subtitle mb-4">
+                Full-stack server-client communication built with Express REST API endpoints (`GET`, `POST`, `PUT`, `DELETE`), JSON database persistence, dynamic DOM updates, and complex validation.
+              </p>
+
+              <div class="d-flex flex-column flex-sm-row gap-3">
+                <a href="#register" class="btn btn-custom-primary">
+                  <i class="bi bi-pencil-square"></i> Apply Now
+                </a>
+                <a href="#dashboard" class="btn btn-custom-secondary">
+                  <i class="bi bi-database"></i> View CRUD Dashboard
+                </a>
+              </div>
+
+              <div class="mt-4 pt-3 d-flex flex-wrap align-items-center gap-4 text-muted small border-top">
+                <span><i class="bi bi-check-circle-fill text-success me-1"></i> REST API (`/api/registrations`)</span>
+                <span><i class="bi bi-shield-check text-primary me-1"></i> JSON Data Persistence</span>
+                <span><i class="bi bi-lightning-charge-fill text-warning me-1"></i> Real-time Fetch API</span>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="hero-card-illustration p-4 rounded-4 bg-white border shadow-lg">
+                <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom">
+                  <div class="bg-primary text-white rounded-3 p-3 fs-4 d-flex align-items-center justify-center">
+                    <i class="bi bi-server"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 mb-0 font-heading fw-bold">Academic REST API Server</h3>
+                    <small class="text-muted font-mono">Express + EJS + JSON DB</small>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-light rounded-3 mb-3 border">
+                  <div class="d-flex justify-content-between text-muted small mb-1">
+                    <span>API Endpoint Status</span>
+                    <span class="text-success fw-bold"><i class="bi bi-circle-fill small me-1"></i> 200 OK Active</span>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+
+                <div class="row g-2 text-center small">
+                  <div class="col-6">
+                    <div class="p-2 border rounded bg-white font-mono">
+                      <strong class="d-block text-primary" style="font-size: 0.75rem;">GET /api/registrations</strong>
+                      <span class="text-muted" style="font-size: 0.7rem;">Fetch All</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 border rounded bg-white font-mono">
+                      <strong class="d-block text-success" style="font-size: 0.75rem;">POST /api/registrations</strong>
+                      <span class="text-muted" style="font-size: 0.7rem;">Create Record</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 border rounded bg-white font-mono">
+                      <strong class="d-block text-warning" style="font-size: 0.75rem;">PUT /api/registrations/:id</strong>
+                      <span class="text-muted" style="font-size: 0.7rem;">Update Record</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 border rounded bg-white font-mono">
+                      <strong class="d-block text-danger" style="font-size: 0.75rem;">DELETE /api/.../:id</strong>
+                      <span class="text-muted" style="font-size: 0.7rem;">Delete Record</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. ABOUT SECTION & STATISTICS -->
+      <section id="about" class="py-5 bg-white border-top border-bottom">
+        <div class="container py-4">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+              <span class="text-primary fw-bold text-uppercase tracking-wider small d-block mb-1">About Our Institution</span>
+              <h2 class="display-6 fw-bold mb-3">Empowering Engineering Excellence</h2>
+              <p class="text-muted">Our academic platform streamlines student registration and course assignment through REST API communication, persistent storage, dynamic DOM manipulation, and full mobile accessibility.</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-6 col-md-3">
+              <div class="stat-card">
+                <div class="stat-number">5,000+</div>
+                <div class="stat-label">Enrolled Students</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Placement Rate</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Degree Programs</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">REST API Verified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. FEATURES & ACADEMIC SERVICES -->
+      <section id="features" class="py-5">
+        <div class="container py-4">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+              <span class="text-primary fw-bold text-uppercase tracking-wider small d-block mb-1">Portal Features</span>
+              <h2 class="display-6 fw-bold mb-3">Advanced Academic Capabilities</h2>
+              <p class="text-muted">Built with REST API CRUD standards, dynamic DOM manipulation, and responsive UX design.</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                  <i class="bi bi-cloud-arrow-down-fill"></i>
+                </div>
+                <h3 class="h5 font-heading fw-bold mb-2">RESTful API Integration</h3>
+                <p class="text-muted small mb-0">Full support for GET, POST, PUT, and DELETE endpoints with standard HTTP status codes (200, 201, 400, 404, 500).</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                  <i class="bi bi-hdd-stack-fill"></i>
+                </div>
+                <h3 class="h5 font-heading fw-bold mb-2">Persistent Database Storage</h3>
+                <p class="text-muted small mb-0">Persistent storage engine (`services/db.js`) maintaining student registrations across server sessions.</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                  <i class="bi bi-layout-three-columns"></i>
+                </div>
+                <h3 class="h5 font-heading fw-bold mb-2">Interactive CRUD Dashboard</h3>
+                <p class="text-muted small mb-0">Responsive dashboard interface enabling full creation, reading, editing, deleting, and live filtering of student records.</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                  <i class="bi bi-shield-check"></i>
+                </div>
+                <h3 class="h5 font-heading fw-bold mb-2">Complex Form Validation</h3>
+                <p class="text-muted small mb-0">Preserved Task 4 real-time validation rules for Name, Email, 10-digit Phone, Age, Course, Password criteria, and Terms.</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                  <i class="bi bi-speedometer2"></i>
+                </div>
+                <h3 class="h5 font-heading fw-bold mb-2">Dynamic Password Strength</h3>
+                <p class="text-muted small mb-0">Live password strength progress bar, badge indicator, and 5-item requirement checklist updating as the user types.</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                  <i class="bi bi-signpost-split-fill"></i>
+                </div>
+                <h3 class="h5 font-heading fw-bold mb-2">Client-Side SPA Routing</h3>
+                <p class="text-muted small mb-0">Single Page Application hash router (`#home`, `#register`, `#dashboard`, `#success`) with custom 404 page handling.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. COURSES HIGHLIGHTS SECTION -->
+      <section id="courses" class="py-5 bg-white border-top border-bottom">
+        <div class="container py-4">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+              <span class="text-primary fw-bold text-uppercase tracking-wider small d-block mb-1">Degree Programs</span>
+              <h2 class="display-6 fw-bold mb-3">Featured Engineering Disciplines</h2>
+              <p class="text-muted">Select your degree course and apply through our integrated API form below.</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="course-card">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="course-badge">4-Year Degree</span>
+                    <i class="bi bi-broadcast fs-4 text-primary"></i>
+                  </div>
+                  <h3 class="h5 font-heading fw-bold">B.E. Electronics & Communication</h3>
+                  <p class="text-muted small">Embedded systems, IoT, digital signal processing, and VLSI circuit design.</p>
+                </div>
+                <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                  <small class="text-muted font-mono"><i class="bi bi-clock me-1"></i>8 Semesters</small>
+                  <a href="#register" class="btn btn-sm btn-outline-primary fw-bold">Select Course</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="course-card">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="course-badge">4-Year Degree</span>
+                    <i class="bi bi-code-slash fs-4 text-primary"></i>
+                  </div>
+                  <h3 class="h5 font-heading fw-bold">B.E. Computer Science & Engineering</h3>
+                  <p class="text-muted small">Full-stack software engineering, artificial intelligence, cloud architecture, and data structures.</p>
+                </div>
+                <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                  <small class="text-muted font-mono"><i class="bi bi-clock me-1"></i>8 Semesters</small>
+                  <a href="#register" class="btn btn-sm btn-outline-primary fw-bold">Select Course</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="course-card">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="course-badge">4-Year Degree</span>
+                    <i class="bi bi-pc-display fs-4 text-primary"></i>
+                  </div>
+                  <h3 class="h5 font-heading fw-bold">B.Tech Information Technology</h3>
+                  <p class="text-muted small">Web applications, database management systems, network security, and DevOps.</p>
+                </div>
+                <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                  <small class="text-muted font-mono"><i class="bi bi-clock me-1"></i>8 Semesters</small>
+                  <a href="#register" class="btn btn-sm btn-outline-primary fw-bold">Select Course</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. REGISTRATION FORM & LIVE PREVIEW SECTION (TASK 4 PRESERVED + TASK 5 API INTEGRATED) -->
+      <section id="register" class="py-5 bg-light">
+        <div class="container py-4">
+          <div class="row justify-content-center mb-4">
+            <div class="col-lg-10 text-center">
+              <div class="d-inline-flex align-items-center justify-content-center w-12 h-12 rounded-circle bg-primary-light text-primary mb-3">
+                <i class="bi bi-shield-check fs-3"></i>
+              </div>
+              <h2 class="h3 font-heading fw-bold mb-1">Student Registration Application</h2>
+              <p class="text-muted small mb-0">Level 3 - Task 5: Validated Inputs Submitted to REST API (`POST /api/registrations`)</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <!-- Registration Form Column -->
+            <div class="col-lg-7">
+              <div class="registration-card h-100">
+                <h3 class="h5 font-heading fw-bold mb-3 d-flex align-items-center gap-2">
+                  <i class="bi bi-pencil-square text-primary"></i> Application Form
+                </h3>
+
+                <form id="registration-form" action="/submit" method="POST" class="needs-validation" novalidate>
+                  
+                  <!-- Full Name Input -->
+                  <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <label for="name" class="form-label mb-0">Full Name <span class="text-danger">*</span></label>
+                      <small id="name-char-count" class="text-muted font-mono" style="font-size: 0.75rem;">0 / 50 characters</small>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-text bg-light"><i class="bi bi-person text-muted"></i></span>
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        id="name" 
+                        name="name" 
+                        placeholder="e.g. John Doe"
+                        maxlength="50"
+                        required
+                      >
+                    </div>
+                    <div id="name-error" class="invalid-feedback"></div>
+                  </div>
+
+                  <!-- Email Address Input -->
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-light"><i class="bi bi-envelope text-muted"></i></span>
+                      <input 
+                        type="email" 
+                        class="form-control" 
+                        id="email" 
+                        name="email" 
+                        placeholder="e.g. john@college.edu" 
+                        required
+                      >
+                    </div>
+                    <div id="email-error" class="invalid-feedback"></div>
+                  </div>
+
+                  <!-- Phone Number & Age Row -->
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-7">
+                      <label for="phone" class="form-label">Phone Number (10-Digit) <span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <span class="input-group-text bg-light">+91</span>
+                        <input 
+                          type="tel" 
+                          class="form-control" 
+                          id="phone" 
+                          name="phone" 
+                          placeholder="e.g. 9876543210"
+                          maxlength="10" 
+                          required
+                        >
+                      </div>
+                      <div id="phone-error" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="col-md-5">
+                      <label for="age" class="form-label">Age <span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="bi bi-calendar text-muted"></i></span>
+                        <input 
+                          type="number" 
+                          class="form-control" 
+                          id="age" 
+                          name="age" 
+                          placeholder="e.g. 20" 
+                          min="16" 
+                          max="100"
+                          required
+                        >
+                      </div>
+                      <div id="age-error" class="invalid-feedback"></div>
+                    </div>
+                  </div>
+
+                  <!-- Course Selection -->
+                  <div class="mb-3">
+                    <label for="course" class="form-label">Desired Engineering Course <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-light"><i class="bi bi-journal-bookmark text-muted"></i></span>
+                      <select class="form-select" id="course" name="course" required>
+                        <option value="" disabled selected>-- Select Engineering Course --</option>
+                        <option value="B.E. Electronics and Communication Engineering">B.E. Electronics and Communication Engineering</option>
+                        <option value="B.E. Computer Science and Engineering">B.E. Computer Science and Engineering</option>
+                        <option value="B.Tech Information Technology">B.Tech Information Technology</option>
+                        <option value="B.E. Mechanical Engineering">B.E. Mechanical Engineering</option>
+                        <option value="B.E. Electrical and Electronics Engineering">B.E. Electrical and Electronics Engineering</option>
+                      </select>
+                    </div>
+                    <div id="course-error" class="invalid-feedback"></div>
+                  </div>
+
+                  <!-- Password Input & Show/Hide Toggle -->
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-light"><i class="bi bi-lock text-muted"></i></span>
+                      <input 
+                        type="password" 
+                        class="form-control" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Create secure password" 
+                        required
+                      >
+                      <button class="btn btn-outline-secondary" type="button" id="toggle-password" aria-label="Show Password">
+                        <i class="bi bi-eye-fill"></i>
+                      </button>
+                    </div>
+                    <div id="password-error" class="invalid-feedback"></div>
+
+                    <!-- Dynamic Password Strength Progress Bar & Badge -->
+                    <div class="mt-2 p-2.5 bg-light rounded border">
+                      <div class="d-flex justify-content-between align-items-center mb-1.5 small">
+                        <span class="fw-bold text-muted" style="font-size: 0.8rem;">Password Strength:</span>
+                        <span id="password-strength-text" class="badge bg-secondary">None</span>
+                      </div>
+                      <div class="progress" style="height: 6px;">
+                        <div id="password-strength-bar" class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+
+                    <!-- Dynamic Password Requirement Checklist -->
+                    <div class="mt-2 p-2.5 bg-white rounded border small">
+                      <div class="fw-bold text-muted mb-1" style="font-size: 0.75rem;">Password Requirements Checklist:</div>
+                      <ul class="list-unstyled mb-0 font-mono" style="font-size: 0.75rem;">
+                        <li id="req-length" class="text-muted d-flex align-items-center gap-1.5 py-0.5"><i class="bi bi-circle text-muted"></i> Minimum 8 characters</li>
+                        <li id="req-uppercase" class="text-muted d-flex align-items-center gap-1.5 py-0.5"><i class="bi bi-circle text-muted"></i> At least one uppercase letter (A-Z)</li>
+                        <li id="req-lowercase" class="text-muted d-flex align-items-center gap-1.5 py-0.5"><i class="bi bi-circle text-muted"></i> At least one lowercase letter (a-z)</li>
+                        <li id="req-number" class="text-muted d-flex align-items-center gap-1.5 py-0.5"><i class="bi bi-circle text-muted"></i> At least one number (0-9)</li>
+                        <li id="req-special" class="text-muted d-flex align-items-center gap-1.5 py-0.5"><i class="bi bi-circle text-muted"></i> At least one special character (!@#$%^&*)</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Confirm Password Input & Show/Hide Toggle -->
+                  <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <span class="input-group-text bg-light"><i class="bi bi-lock-fill text-muted"></i></span>
+                      <input 
+                        type="password" 
+                        class="form-control" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        placeholder="Re-enter password to match" 
+                        required
+                      >
+                      <button class="btn btn-outline-secondary" type="button" id="toggle-confirm-password" aria-label="Show Password">
+                        <i class="bi bi-eye-fill"></i>
+                      </button>
+                    </div>
+                    <div id="confirmPassword-error" class="invalid-feedback"></div>
+                  </div>
+
+                  <!-- Terms and Conditions Checkbox -->
+                  <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                    <label class="form-check-label small text-muted" for="terms">
+                      I agree to the <a href="#" class="text-primary text-decoration-none fw-semibold">Terms and Conditions</a> and declare all entered information is valid. <span class="text-danger">*</span>
+                    </label>
+                    <div id="terms-error" class="invalid-feedback"></div>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <button type="submit" id="submit-btn" class="btn btn-custom-primary w-100 py-3 font-heading fw-bold">
+                    <i class="bi bi-send-check-fill me-1"></i> Submit Registration Application
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Dynamic Registration Live Preview Column -->
+            <div class="col-lg-5">
+              <div class="registration-card h-100 bg-white border shadow-sm">
+                <div class="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom">
+                  <h3 class="h5 font-heading fw-bold mb-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-eye-fill text-primary"></i> Live Application Preview
+                  </h3>
+                  <span class="badge bg-primary-light text-primary font-mono" style="font-size: 0.7rem;">Real-Time DOM</span>
+                </div>
+
+                <p class="text-muted small mb-4">
+                  As you fill out the registration form, your details update instantly below in real time without refreshing the page.
+                </p>
+
+                <div class="d-flex flex-column gap-3">
+                  <div class="p-3 bg-light rounded border">
+                    <small class="text-muted text-uppercase tracking-wider fw-bold d-block mb-1" style="font-size: 0.7rem;">Full Name</small>
+                    <span id="preview-name" class="fw-semibold text-dark d-block">Not entered</span>
+                  </div>
+
+                  <div class="p-3 bg-light rounded border">
+                    <small class="text-muted text-uppercase tracking-wider fw-bold d-block mb-1" style="font-size: 0.7rem;">Email Address</small>
+                    <span id="preview-email" class="fw-semibold text-dark d-block text-break">Not entered</span>
+                  </div>
+
+                  <div class="p-3 bg-light rounded border">
+                    <small class="text-muted text-uppercase tracking-wider fw-bold d-block mb-1" style="font-size: 0.7rem;">Phone Number</small>
+                    <span id="preview-phone" class="fw-semibold text-dark d-block">Not entered</span>
+                  </div>
+
+                  <div class="p-3 bg-light rounded border">
+                    <small class="text-muted text-uppercase tracking-wider fw-bold d-block mb-1" style="font-size: 0.7rem;">Selected Course</small>
+                    <span id="preview-course" class="fw-semibold text-dark d-block">Not selected</span>
+                  </div>
+
+                  <div class="p-3 bg-light rounded border d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-muted text-uppercase tracking-wider fw-bold d-block mb-0" style="font-size: 0.7rem;">Password Security</small>
+                    </div>
+                    <span id="preview-strength" class="badge bg-secondary">Not set</span>
+                  </div>
+
+                  <div class="p-3 bg-light rounded border d-flex justify-content-between align-items-center">
+                    <div>
+                      <small class="text-muted text-uppercase tracking-wider fw-bold d-block mb-0" style="font-size: 0.7rem;">Terms Acceptance</small>
+                    </div>
+                    <span id="preview-terms" class="badge bg-warning-light text-warning fw-bold">Pending</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-primary-light rounded text-center">
+                  <small class="text-primary fw-semibold d-block">
+                    <i class="bi bi-cloud-check me-1"></i> REST API Endpoint: POST `/api/registrations`
+                  </small>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CALL TO ACTION BANNER -->
+      <section class="py-5">
+        <div class="container">
+          <div class="cta-banner text-center text-md-start">
+            <div class="row align-items-center">
+              <div class="col-md-8 mb-3 mb-md-0">
+                <h2 class="h3 font-heading fw-bold mb-2">Ready to Start Your Academic Journey?</h2>
+                <p class="mb-0 text-white-50">Submit your registration details now and manage record entries via our REST API CRUD dashboard.</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <a href="#register" class="btn btn-light text-primary font-heading fw-bold px-4 py-2.5">
+                  <i class="bi bi-rocket-takeoff-fill me-1"></i> Apply Today
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. CONTACT & SUPPORT SECTION -->
+      <section id="contact" class="py-5 bg-white border-top">
+        <div class="container py-4">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+              <span class="text-primary fw-bold text-uppercase tracking-wider small d-block mb-1">Get in Touch</span>
+              <h2 class="display-6 fw-bold mb-3">Contact Academic Support</h2>
+              <p class="text-muted">Have questions regarding admission rules, REST API usage, or technical submission? Send us a message.</p>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <div class="d-flex flex-column gap-3">
+                <div class="p-3 border rounded-3 bg-light d-flex align-items-center gap-3">
+                  <div class="contact-info-icon">
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <div>
+                    <strong class="d-block text-dark">Campus Address</strong>
+                    <span class="text-muted small">College Campus, University Road, India</span>
+                  </div>
+                </div>
+
+                <div class="p-3 border rounded-3 bg-light d-flex align-items-center gap-3">
+                  <div class="contact-info-icon">
+                    <i class="bi bi-telephone-fill"></i>
+                  </div>
+                  <div>
+                    <strong class="d-block text-dark">Support Hotline</strong>
+                    <span class="text-muted small">+91 (044) 2345-6789</span>
+                  </div>
+                </div>
+
+                <div class="p-3 border rounded-3 bg-light d-flex align-items-center gap-3">
+                  <div class="contact-info-icon">
+                    <i class="bi bi-envelope-fill"></i>
+                  </div>
+                  <div>
+                    <strong class="d-block text-dark">Email Support</strong>
+                    <span class="text-muted small">admissions@college.edu</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="contact-card">
+                <h3 class="h5 font-heading fw-bold mb-3">Send Inquiry Message</h3>
+                
+                <form action="/contact" method="POST">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="contactName" class="form-label">Your Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="contactName" name="contactName" placeholder="Enter full name" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="contactEmail" class="form-label">Your Email <span class="text-danger">*</span></label>
+                      <input type="email" class="form-control" id="contactEmail" name="contactEmail" placeholder="Enter email address" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="subject" class="form-label">Subject / Inquiry Type</label>
+                      <select class="form-select" id="subject" name="subject">
+                        <option value="General Admission Inquiry">General Admission Inquiry</option>
+                        <option value="REST API Documentation">REST API Documentation Request</option>
+                        <option value="Technical Support">Technical Support</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                      <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your inquiry details..." required></textarea>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-custom-secondary px-4">
+                        <i class="bi bi-send me-1"></i> Send Message
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div> <!-- END OF #main-portal-content -->
+
+    <!-- 9. TASK 5: REGISTRATION MANAGEMENT CRUD DASHBOARD (#dashboard ROUTE) -->
+    <section id="dashboard-section" class="py-5 bg-light min-vh-100" style="display: none;">
+      <div class="container py-4">
+        
+        <!-- Header Title Banner -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+          <div>
+            <div class="d-inline-flex align-items-center gap-2 mb-1">
+              <span class="badge bg-primary rounded-pill font-mono">Task 5 REST API</span>
+              <span id="dashboard-total-count" class="badge bg-white text-dark border font-mono">0 Total Records</span>
+            </div>
+            <h1 class="h3 font-heading fw-bold mb-1">Registration Management Dashboard</h1>
+            <p class="text-muted small mb-0">Perform real-time REST API CRUD operations (`GET`, `POST`, `PUT`, `DELETE`) communicating with persistent JSON storage.</p>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button id="btn-refresh-dashboard" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-clockwise me-1"></i> Refresh Data
+            </button>
+            <a href="#register" class="btn btn-custom-primary">
+              <i class="bi bi-plus-circle me-1"></i> Add New Registration
+            </a>
+          </div>
+        </div>
+
+        <!-- Dashboard Control Bar (Search Filter) -->
+        <div class="card border-0 shadow-sm rounded-3 mb-4 p-3 bg-white">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-7 col-lg-8">
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-search text-muted"></i></span>
+                <input 
+                  type="text" 
+                  id="dashboard-search" 
+                  class="form-control" 
+                  placeholder="Search registrations by name, email, phone, or course..."
+                >
+              </div>
+            </div>
+            <div class="col-md-5 col-lg-4 text-md-end">
+              <small class="text-muted font-mono"><i class="bi bi-cloud-check text-success me-1"></i> Connected to `/api/registrations`</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Table Card -->
+        <div class="card border-0 shadow-lg rounded-3 overflow-hidden bg-white">
+          
+          <!-- Loading State Indicator -->
+          <div id="dashboard-loading" class="text-center py-5">
+            <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-muted fw-semibold mb-0">Fetching records from REST API...</p>
+          </div>
+
+          <!-- Empty State -->
+          <div id="dashboard-empty" class="text-center py-5" style="display: none;">
+            <div class="d-inline-flex align-items-center justify-content-center w-16 h-16 rounded-circle bg-light text-muted mb-3" style="width: 64px; height: 64px; font-size: 2rem;">
+              <i class="bi bi-inbox"></i>
+            </div>
+            <h3 class="h5 font-heading fw-bold mb-1">No Registrations Found</h3>
+            <p class="text-muted small mb-3">There are no records in the persistent database or no results matching your search query.</p>
+            <a href="#register" class="btn btn-sm btn-custom-primary">
+              <i class="bi bi-plus-circle me-1"></i> Add New Registration
+            </a>
+          </div>
+
+          <!-- Error State -->
+          <div id="dashboard-error" class="text-center py-5 px-3" style="display: none;">
+            <div class="d-inline-flex align-items-center justify-content-center w-16 h-16 rounded-circle bg-danger-light text-danger mb-3" style="width: 64px; height: 64px; font-size: 2rem;">
+              <i class="bi bi-exclamation-octagon-fill"></i>
+            </div>
+            <h3 class="h5 font-heading fw-bold text-danger mb-1">API Communication Error</h3>
+            <p id="dashboard-error-message" class="text-muted small mb-3">Unable to connect to REST API server.</p>
+            <button class="btn btn-sm btn-outline-danger" onclick="location.reload()">
+              <i class="bi bi-arrow-clockwise me-1"></i> Retry Server Connection
+            </button>
+          </div>
+
+          <!-- Dynamic Registrations Table -->
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light border-bottom font-heading">
+                <tr class="small text-muted text-uppercase tracking-wider">
+                  <th scope="col" style="width: 50px;">#</th>
+                  <th scope="col">Student Name & ID</th>
+                  <th scope="col">Email Address</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Course</th>
+                  <th scope="col">Submitted Date</th>
+                  <th scope="col" class="text-end" style="width: 170px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-table-body">
+                <!-- Dynamically Rendered by script.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. SUCCESS SECTION (#success ROUTE) -->
+    <section id="success-section" class="py-5 bg-light min-vh-100 d-flex align-items-center" style="display: none;">
+      <div class="container py-4">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="registration-card text-center shadow-lg border-0">
+              
+              <div class="d-inline-flex align-items-center justify-content-center w-16 h-16 rounded-circle bg-success-light text-success mb-3" style="width: 72px; height: 72px; font-size: 2.5rem;">
+                <i class="bi bi-check-circle-fill"></i>
+              </div>
+
+              <span class="badge bg-success rounded-pill px-3 py-1.5 mb-2 font-mono">Submission Successful</span>
+              <h1 class="display-6 font-heading fw-bold mb-2">Registration Successful!</h1>
+              <h2 class="h4 text-primary fw-semibold mb-3">Welcome, <span id="success-name">Student</span>!</h2>
+              
+              <p class="text-muted mb-4">
+                Your student registration details have been validated and saved persistently via `POST /api/registrations`.
+              </p>
+
+              <div class="card bg-light border-0 rounded-3 text-start mb-4 p-3 p-md-4">
+                <h3 class="h6 font-heading fw-bold text-uppercase text-muted tracking-wider mb-3">API Record Details Summary</h3>
+                <dl class="row mb-0 small">
+                  <dt class="col-sm-4 text-muted">Full Name:</dt>
+                  <dd class="col-sm-8 fw-semibold text-dark mb-2" id="success-detail-name">-</dd>
+
+                  <dt class="col-sm-4 text-muted">Email Address:</dt>
+                  <dd class="col-sm-8 fw-semibold text-dark mb-2" id="success-detail-email">-</dd>
+
+                  <dt class="col-sm-4 text-muted">Phone Number:</dt>
+                  <dd class="col-sm-8 fw-semibold text-dark mb-2" id="success-detail-phone">-</dd>
+
+                  <dt class="col-sm-4 text-muted">Age:</dt>
+                  <dd class="col-sm-8 fw-semibold text-dark mb-2" id="success-detail-age">-</dd>
+
+                  <dt class="col-sm-4 text-muted">Selected Course:</dt>
+                  <dd class="col-sm-8 fw-semibold text-dark mb-2" id="success-detail-course">-</dd>
+
+                  <dt class="col-sm-4 text-muted">Created At:</dt>
+                  <dd class="col-sm-8 font-mono text-muted mb-0" id="success-timestamp">-</dd>
+                </dl>
+              </div>
+
+              <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="#dashboard" class="btn btn-custom-primary px-4 py-2.5">
+                  <i class="bi bi-database me-1"></i> View CRUD Dashboard
+                </a>
+                <a href="#register" class="btn btn-custom-secondary px-4 py-2.5">
+                  <i class="bi bi-pencil-square me-1"></i> Submit Another Application
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. 404 NOT FOUND SECTION (INVALID ROUTE HANDLER) -->
+    <section id="not-found-section" class="py-5 bg-light min-vh-100 d-flex align-items-center" style="display: none;">
+      <div class="container py-4">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-6">
+            <div class="registration-card shadow-lg border-0 py-5">
+              <div class="display-1 fw-bold text-primary font-mono mb-2">404</div>
+              <h2 class="h3 font-heading fw-bold mb-3">Page Route Not Found</h2>
+              <p class="text-muted mb-4">
+                The hash route you entered does not exist or has moved. Please navigate using the portal links below.
+              </p>
+              <div class="d-flex justify-content-center gap-3">
+                <a href="#home" class="btn btn-custom-primary px-4">
+                  <i class="bi bi-house-door me-1"></i> Go to Home
+                </a>
+                <a href="#dashboard" class="btn btn-custom-secondary px-4">
+                  <i class="bi bi-database me-1"></i> Go to Dashboard
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- EDIT REGISTRATION MODAL (PUT /api/registrations/:id) -->
+  <div class="modal fade" id="editRegistrationModal" tabindex="-1" aria-labelledby="editRegistrationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title font-heading fw-bold" id="editRegistrationModalLabel">
+            <i class="bi bi-pencil-square text-primary me-2"></i>Edit Student Registration
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form id="edit-registration-form" novalidate>
+          <div class="modal-body p-4">
+            <input type="hidden" id="edit-id">
+
+            <div class="mb-3">
+              <label for="edit-name" class="form-label small fw-bold">Full Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="edit-name" required>
+              <div id="edit-name-error" class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="edit-email" class="form-label small fw-bold">Email Address <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="edit-email" required>
+              <div id="edit-email-error" class="invalid-feedback"></div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-7">
+                <label for="edit-phone" class="form-label small fw-bold">Phone (10-Digit) <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="edit-phone" maxlength="10" required>
+                <div id="edit-phone-error" class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-5">
+                <label for="edit-age" class="form-label small fw-bold">Age <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" id="edit-age" min="16" max="100" required>
+                <div id="edit-age-error" class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="edit-course" class="form-label small fw-bold">Engineering Course <span class="text-danger">*</span></label>
+              <select class="form-select" id="edit-course" required>
+                <option value="B.E. Electronics and Communication Engineering">B.E. Electronics and Communication Engineering</option>
+                <option value="B.E. Computer Science and Engineering">B.E. Computer Science and Engineering</option>
+                <option value="B.Tech Information Technology">B.Tech Information Technology</option>
+                <option value="B.E. Mechanical Engineering">B.E. Mechanical Engineering</option>
+                <option value="B.E. Electrical and Electronics Engineering">B.E. Electrical and Electronics Engineering</option>
+              </select>
+              <div id="edit-course-error" class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" id="edit-save-btn" class="btn btn-custom-primary btn-sm px-4">
+              <i class="bi bi-save me-1"></i> Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRMATION MODAL (DELETE /api/registrations/:id) -->
+  <div class="modal fade" id="deleteRegistrationModal" tabindex="-1" aria-labelledby="deleteRegistrationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 shadow-lg text-center">
+        <div class="modal-body p-4">
+          <div class="d-inline-flex align-items-center justify-content-center w-12 h-12 rounded-circle bg-danger-light text-danger mb-3" style="width: 54px; height: 54px; font-size: 1.75rem;">
+            <i class="bi bi-trash-fill"></i>
+          </div>
+          <h5 class="h6 font-heading fw-bold mb-2">Delete Registration?</h5>
+          <p class="text-muted small mb-3">
+            Are you sure you want to permanently delete registration for <strong id="delete-confirm-name" class="text-dark">Student</strong>?
+          </p>
+          <div class="d-flex justify-content-center gap-2">
+            <button type="button" class="btn btn-light btn-sm px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" id="delete-confirm-btn" class="btn btn-danger btn-sm px-3">
+              <i class="bi bi-trash-fill me-1"></i> Confirm Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="navbar-brand-badge" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="bi bi-mortarboard-fill"></i>
+            </div>
+            <span class="font-heading fw-bold fs-5 text-white">EduPortal</span>
+          </div>
+          <p class="text-muted small pe-lg-4 mb-3">
+            Enterprise Academic System engineered with Express RESTful API endpoints, persistent database storage, and front-end interaction.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="#" class="social-icon-btn" aria-label="Github Repository"><i class="bi bi-github"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter Profile"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+          <h5>Quick Shortcuts</h5>
+          <ul class="list-unstyled">
+            <li><a href="#home" class="footer-link">Home Portal</a></li>
+            <li><a href="#about" class="footer-link">About Institution</a></li>
+            <li><a href="#features" class="footer-link">Platform Features</a></li>
+            <li><a href="#courses" class="footer-link">Degree Courses</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-4">
+          <h5>Portal Actions</h5>
+          <ul class="list-unstyled">
+            <li><a href="#register" class="footer-link">Student Registration</a></li>
+            <li><a href="#dashboard" class="footer-link">CRUD Dashboard</a></li>
+            <li><a href="#contact" class="footer-link">Support & Contact</a></li>
+            <li><span class="footer-link text-muted font-mono" style="font-size: 0.8rem;">Task 5 - REST API Integration</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-3 border-top border-secondary d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 small">
+        <p class="mb-0">&copy; 2026 Student Academic Portal. Built for Level 3 Task 5 — API Integration & Front-End Interaction.</p>
+        <span class="font-mono text-muted">Express REST API + EJS + Bootstrap 5</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Modular Task 5 Client-Side Script -->
+  <script src="/js/script.js"></script>
+</body>
+</html>
